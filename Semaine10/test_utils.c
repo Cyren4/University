@@ -1,9 +1,8 @@
-#include <stdio.h>
 #include "multi_ensembles.h"
 
 
 //ajout nouvel element
-void	Test_ajout(element_t *tete, int i )
+static void	Test_ajout(element_t *tete, int i )
 {
 	int val, freq, choice = 1;
 
@@ -25,7 +24,7 @@ void	Test_ajout(element_t *tete, int i )
 	}
 }
 
-void	Test_suppression(element_t *tete, int i)
+static void	Test_suppression(element_t *tete, int i)
 {
 	int val, choice = 1;
 
@@ -46,7 +45,7 @@ void	Test_suppression(element_t *tete, int i)
 	}
 }
 
-void	Test_suppression_total(element_t *tete, int i)
+static void	Test_suppression_total(element_t *tete, int i)
 {
 	int val, choice = 1;
 
@@ -67,11 +66,11 @@ void	Test_suppression_total(element_t *tete, int i)
 	}
 }
 
-int		test(element_t *tete, int i)
+static int		which_test(element_t *tete, int i)
 {
 	int choice = 1;
 
-	while (choice != 0)
+    while (choice != 0)
 	{
 		printf("\033[1;34mWhich test do you want to try?\n\033[0;m");
 		printf("\t1 - Ajout element %s\n", i == 1? "en tete" : "trie");
@@ -95,7 +94,7 @@ int		test(element_t *tete, int i)
 	return (choice);
 }
 
-void	which_test(element_t *tete)
+void	test(element_t *tete)
 {
 	int choice = 1;
 
@@ -106,20 +105,8 @@ void	which_test(element_t *tete)
 		if (choice == 0)
 			return;
 		else if (choice == 1)
-			choice = test(tete, 2);
+			choice = which_test(tete, 2);
 		else if (choice == 2)
-			choice = test(tete, 1);
+			choice = which_test(tete, 1);
 	}
-}
-
-int main()
-{
-	element_t *tete;
-	int val, freq, choice = 1;
-
-	tete = Creation_ensemble(5);
-	Affiche_ensemble(tete);
-	which_test(tete);
-	printf("\033[1;34mSee you!");
-	return 0;
 }
